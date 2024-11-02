@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { navigate } from '../../navigation/navigationRef';
 import userImg from '../../assets/user-img.png';
 import Cards from '../../components/cards';
+import Concepts from '../Concepts';
 
 export default function Home() {
+	const navigation = useNavigation();
   const [expanded, setExpanded] = useState(false);
 
   function toggleExpanded() {
@@ -12,7 +16,11 @@ export default function Home() {
   }
 
   function goToDisciplines() {
-    navigation.navigate('TabNavigator', { screen: 'Disciplines' });
+    navigate('Disciplines');
+  }
+
+  function goToConcepts() {
+    navigate('Concepts');
   }
 
   return (
@@ -53,13 +61,13 @@ export default function Home() {
         </View>
 
         <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable} onPress={() => alert('Minha turma')}>
+          <TouchableOpacity style={styles.cardTouchable} onPress={() => alert('Minha Turma')}>
             <Cards iconName="people" label="Minha turma" />
           </TouchableOpacity>
         </View>
 
         <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable} onPress={() => alert('Conceitos')}>
+          <TouchableOpacity style={styles.cardTouchable} onPress={goToConcepts}>
             <Cards iconName="school" label="Conceitos" />
           </TouchableOpacity>
         </View>
