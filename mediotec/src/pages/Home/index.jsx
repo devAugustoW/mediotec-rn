@@ -13,29 +13,20 @@ export default function Home() {
     setExpanded(!expanded);
   }
 
-  function goToDisciplines() {
-    navigation.navigate('Disciplines'); 
+  // Função genérica para navegar para a tela passada como argumento
+  function navigateTo(screenName) {
+    navigation.navigate(screenName);
   }
 
-	function goToMyClass() {
-		navigation.navigate('MyClass')
-	}
-
-  function goToConcepts() {
-    navigation.navigate('Concepts'); 
-  }
-
-	function goToComunications() {
-    navigation.navigate('Comunications'); 
-  }
-
-	function goToContacts() {
-		navigation.navigate('Contacts');
-	}
-
-	function goToFinancial(){
-		navigation.navigate('Financial');
-	}
+	// Array de objetos para armazenar as informações de cada card
+	const cardData = [
+		{ iconName: 'book', label: 'Disciplinas', screenName: 'Disciplines' },
+    { iconName: 'people', label: 'Minha turma', screenName: 'MyClass' },
+    { iconName: 'school', label: 'Conceitos', screenName: 'Concepts' },
+    { iconName: 'chatbubbles', label: 'Comunicados', screenName: 'Comunications' },
+    { iconName: 'call', label: 'Contatos', screenName: 'Contacts' },
+    { iconName: 'cash', label: 'Financeiro', screenName: 'Financial' },
+	]
 
   return (
     <View style={styles.container}>
@@ -67,42 +58,16 @@ export default function Home() {
       </View>
 
       {/* Grid de disciplinas */}
-			<View style={styles.gridContainer}>
-        <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable}>
-            <Cards iconName="book" label="Disciplinas" onPress={goToDisciplines} />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable}>
-            <Cards iconName="people" label="Minha turma" onPress={goToMyClass} />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable}>
-            <Cards iconName="school" label="Conceitos" onPress={goToConcepts} />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable}>
-            <Cards iconName="chatbubbles" label="Comunicados" onPress={goToComunications} />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable}>
-            <Cards iconName="call" label="Contatos" onPress={goToContacts} />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable}>
-            <Cards iconName="cash" label="Financeiro" onPress={goToFinancial}/>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.gridContainer}>
+        {cardData.map((card, index) => (
+          <View key={index} style={styles.cardWrapper}>
+            <Cards
+              iconName={card.iconName}
+              label={card.label}
+              onPress={() => navigateTo(card.screenName)}
+            />
+          </View>
+        ))}
       </View>
     </View>
   );
