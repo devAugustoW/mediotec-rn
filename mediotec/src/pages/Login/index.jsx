@@ -22,6 +22,7 @@ const Login = ({ navigation }) => {
       <View style={styles.logoContainer}>
         <Image source={logo} />
       </View>
+			
       <View style={styles.formContainer}>
         <TextInput style={styles.input}
           placeholder="Usuário"

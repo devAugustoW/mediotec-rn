@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 
-const Cards= ({ iconName, label }) => {
+const Cards= ({ onPress, iconName, label }) => {
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPress}>
       <Ionicons name={iconName} size={30} color="black" />
       <Text style={styles.cardText}>{label}</Text>
     </TouchableOpacity>

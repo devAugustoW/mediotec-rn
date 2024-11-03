@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+
 import { useNavigation } from '@react-navigation/native';
-import { navigate } from '../../navigation/navigationRef';
 import userImg from '../../assets/user-img.png';
 import Cards from '../../components/cards';
-import Concepts from '../Concepts';
 
 export default function Home() {
-	const navigation = useNavigation();
+  const navigation = useNavigation();
   const [expanded, setExpanded] = useState(false);
 
   function toggleExpanded() {
@@ -16,12 +14,28 @@ export default function Home() {
   }
 
   function goToDisciplines() {
-    navigate('Disciplines');
+    navigation.navigate('Disciplines'); 
   }
 
+	function goToMyClass() {
+		navigation.navigate('MyClass')
+	}
+
   function goToConcepts() {
-    navigate('Concepts');
+    navigation.navigate('Concepts'); 
   }
+
+	function goToComunications() {
+    navigation.navigate('Comunications'); 
+  }
+
+	function goToContacts() {
+		navigation.navigate('Contacts');
+	}
+
+	function goToFinancial(){
+		navigation.navigate('Financial');
+	}
 
   return (
     <View style={styles.container}>
@@ -53,40 +67,40 @@ export default function Home() {
       </View>
 
       {/* Grid de disciplinas */}
-      <View style={styles.gridContainer}>
+			<View style={styles.gridContainer}>
         <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable} onPress={goToDisciplines}>
-            <Cards iconName="book" label="Disciplinas" />
+          <TouchableOpacity style={styles.cardTouchable}>
+            <Cards iconName="book" label="Disciplinas" onPress={goToDisciplines} />
           </TouchableOpacity>
         </View>
 
         <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable} onPress={() => alert('Minha Turma')}>
-            <Cards iconName="people" label="Minha turma" />
+          <TouchableOpacity style={styles.cardTouchable}>
+            <Cards iconName="people" label="Minha turma" onPress={goToMyClass} />
           </TouchableOpacity>
         </View>
 
         <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable} onPress={goToConcepts}>
-            <Cards iconName="school" label="Conceitos" />
+          <TouchableOpacity style={styles.cardTouchable}>
+            <Cards iconName="school" label="Conceitos" onPress={goToConcepts} />
           </TouchableOpacity>
         </View>
 
         <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable} onPress={() => alert('Comunicados')}>
-            <Cards iconName="chatbubbles" label="Comunicados" />
+          <TouchableOpacity style={styles.cardTouchable}>
+            <Cards iconName="chatbubbles" label="Comunicados" onPress={goToComunications} />
           </TouchableOpacity>
         </View>
 
         <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable} onPress={() => alert('Contatos')}>
-            <Cards iconName="call" label="Contatos" />
+          <TouchableOpacity style={styles.cardTouchable}>
+            <Cards iconName="call" label="Contatos" onPress={goToContacts} />
           </TouchableOpacity>
         </View>
 
         <View style={styles.cardWrapper}>
-          <TouchableOpacity style={styles.cardTouchable} onPress={() => alert('Financeiro')}>
-            <Cards iconName="cash" label="Financeiro" />
+          <TouchableOpacity style={styles.cardTouchable}>
+            <Cards iconName="cash" label="Financeiro" onPress={goToFinancial}/>
           </TouchableOpacity>
         </View>
       </View>
